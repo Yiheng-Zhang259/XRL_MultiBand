@@ -63,14 +63,14 @@ class SaveOnBestTrainingRewardCallback(BaseCallback):
 load = [4000]
 holding_time = [400]
 for i, j in zip(load, holding_time):
-  log_dir = "/content/ProjectFiles/DQN_results/German/CLSE/{}/tmp1/".format(i)
+  log_dir = "/content/XRL_MultiBand/DQN_results/German/CLSE/{}/tmp1/".format(i)
   os.makedirs(log_dir, exist_ok=True)
   callback = SaveOnBestTrainingRewardCallback(check_freq=100, log_dir=log_dir)
   
   
   topology_name = 'German'
   k_paths = 5
-  with open(f"/content/ProjectFiles/optical-rl-gym/examples/topologies/German_chen_eon_5-paths_CLSE.h5", 'rb') as f:
+  with open(f"/content/XRL_MultiBand/optical-rl-gym/examples/topologies/German_chen_eon_5-paths_CLSE.h5", 'rb') as f:
       topology = pickle.load(f)
   
   node_request_probabilities = np.array([0.04010222, 0.02912795, 0.11415171, 0.09629792, 0.05651761, 0.10509004,
@@ -99,14 +99,14 @@ for i, j in zip(load, holding_time):
   print(f"mean_reward:{mean_reward:.2f} +/- {std_reward:.2f}")
   import os
  
-  a = model.learn(total_timesteps=20000, callback=callback)
-  os.remove("/content/blockingReason4000.csv")
+  a = model.learn(total_timesteps=500000, callback=callback)
+  #os.remove("/content/blockingReason4000.csv")
   #Evaluate the trained agent
-  mean_reward, std_reward = evaluate_policy(model, testing_env, n_eval_episodes=10)
+  mean_reward, std_reward = evaluate_policy(model, testing_env, n_eval_episodes=1000)
   
   print(f"mean_reward:{mean_reward:.2f} +/- {std_reward:.2f}")
   from stable_baselines import results_plotter
-  model.save("/content/ProjectFiles/DQN_results/German/CLSE/{}/best".format(i))
+  model.save("/content/XRL_MultiBand/DQN_results/German/CLSE/{}/best".format(i))
   # Helper from the library
   results_plotter.plot_results([log_dir], 1e5, results_plotter.X_TIMESTEPS, "DQN DeepRMSA v0")
   plt.savefig("/content/Results/German_topology_5-paths_CLSE_4000.png")
