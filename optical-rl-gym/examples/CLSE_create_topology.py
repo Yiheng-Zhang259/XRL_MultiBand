@@ -155,9 +155,9 @@ modulations.append({'modulation': 'E-64QAM', 'capacity': 140., 'maximum_length':
 k_paths = 5
 
 # The paper uses K=5 and J=1
-topology = get_topology('/content/ProjectFiles/New_topologies/German_topology.txt', 'German', modulations, k_paths=k_paths)
+topology = get_topology('/content/XRL_MultiBand/New_topologies/German_topology.txt', 'German', modulations, k_paths=k_paths)
 
-with open(f'/content/ProjectFiles/optical-rl-gym/examples/topologies/German_5-paths_CLSE.h5', 'wb') as f:
+with open('/content/XRL_MultiBand/optical-rl-gym/examples/topologies/German_5-paths_CLSE.h5', 'wb') as f:
     pickle.dump(topology, f)
 
 print('done for', topology)
