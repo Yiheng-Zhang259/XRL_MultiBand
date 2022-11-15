@@ -73,6 +73,7 @@ for i, j in zip(load, holding_time):
   with open(f"/content/XRL_MultiBand/optical-rl-gym/examples/topologies/German_chen_eon_5-paths_CLSE.h5", 'rb') as f:
       topology = pickle.load(f)
   
+  # Change number of nodes according to topology
   node_request_probabilities = np.array([0.04010222, 0.02912795, 0.11415171, 0.09629792, 0.05651761, 0.10509004,
                       0.09957198, 0.01094278, 0.08180492, 0.12338661, 0.08361254, 0.0007399,
                       0.01794295, 0.1023548,  0.00593917, 0.028732,   0.00368489])
@@ -85,7 +86,7 @@ for i, j in zip(load, holding_time):
   training_env = Monitor(training_env, log_dir + '500ktraining', info_keywords=('episode_service_blocking_rate','episode_bit_rate_blocking_rate'))
   # kwargs = {'double_q': True, 'prioritized_replay': True, 'policy_kwargs': dict(dueling=True)} # set of parameters for testing
   policy_kwargs = {'layers': [128] * 4, 'dueling': False}
-  model = DQN(MlpPolicy, training_env, verbose=0, tensorboard_log="ProjectFiles/tb/DQN-DeepRMSA-v0/", double_q=False, gamma=.95, policy_kwargs=policy_kwargs,
+  model = DQN(MlpPolicy, training_env, verbose=0, tensorboard_log="XRL_MultiBand/tb/NSFNET_CLSE_4000/DQN-DeepRMSA-v0/", double_q=False, gamma=.95, policy_kwargs=policy_kwargs,
              learning_rate=10e-5)
   
   env_args['seed'] = env_args['seed'] + 1
@@ -102,9 +103,9 @@ for i, j in zip(load, holding_time):
   a = model.learn(total_timesteps=500000, callback=callback)
   #os.remove("/content/blockingReason4000.csv")
   #Evaluate the trained agent
-  mean_reward, std_reward = evaluate_policy(model, testing_env, n_eval_episodes=1000)
+  #mean_reward, std_reward = evaluate_policy(model, testing_env, n_eval_episodes=1000)
   
-  print(f"mean_reward:{mean_reward:.2f} +/- {std_reward:.2f}")
+  #print(f"mean_reward:{mean_reward:.2f} +/- {std_reward:.2f}")
   from stable_baselines import results_plotter
   model.save("/content/XRL_MultiBand/DQN_results/German/CLSE/{}/best".format(i))
   # Helper from the library
