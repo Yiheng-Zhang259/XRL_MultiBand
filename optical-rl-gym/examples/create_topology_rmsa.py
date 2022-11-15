@@ -42,7 +42,7 @@ def get_topology(file_name, topology_name, modulations, k_paths=5):
                 selected_modulations = [get_modulation_format(length, modulations) for length in lengths]
                 objs = []
                 for path, length, modulation in zip(paths, lengths, selected_modulations):
-                    objs.append(Path(idp, path, length, best_modulation=modulation))
+                    objs.append(Path(idp, path, length, modulation))
                     print('\t', idp, length, modulation, path)
                     idp += 1
                 k_shortest_paths[n1, n2] = objs
@@ -84,9 +84,9 @@ modulations.append({'modulation': '16QAM', 'capacity': 186., 'maximum_length': 1
 k_paths = 5
 
 # The paper uses K=5 and J=1
-topology = get_topology('/content/ProjectFiles/New_topologies/German_topology.txt', 'German', modulations, k_paths=k_paths)
+topology = get_topology('/content/XRL_MultiBand/New_topologies/German_topology.txt', 'German', modulations, k_paths=k_paths)
 
-with open('ProjectFiles/optical-rl-gym/examples/topologies/German_chen_eon_{k_paths}-paths_C.h5', 'wb') as f:
+with open('/content/XRL_MultiBand/optical-rl-gym/examples/topologies/German_5-paths_C.h5', 'wb') as f:
     pickle.dump(topology, f)
 
 print('done for', topology)
