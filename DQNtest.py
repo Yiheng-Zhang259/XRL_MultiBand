@@ -24,9 +24,10 @@ import time
 
 topology_name = 'NSFNET'
 k_paths = 5
-with open(f"/home/zceened/optical-rl-gym/examples/topologies/NSFNET_chen_eon_5-paths_CLS.h5", 'rb') as f:
+with open(f"/content/XRL_MultiBand/optical-rl-gym/examples/topologies/NSFNET_chen_eon_5-paths_CLS.h5", 'rb') as f:
     topology = pickle.load(f)
 
+# change number of nodes according to topology
 node_request_probabilities = np.array([0.01801802, 0.04004004, 0.05305305, 0.01901902, 0.04504505, #add comma again
        0.02402402, 0.06706707, 0.08908909, 0.13813814, 0.12212212,
        0.07607608, 0.12012012, 0.01901902, 0.16916917])
@@ -39,7 +40,7 @@ testing_env = gym.make('DeepRMSA-v0', **env_args)
 # Logs will be saved in log_dir/monitor.csv
 #testing_env = Monitor(testing_env, log_dir + 'testing_upd', info_keywords=('episode_service_blocking_rate','episode_bit_rate_blocking_rate'))
 #testing_env1 = Monitor(testing_env1, log_dir1 + 'testing_upd', info_keywords=('episode_service_blocking_rate','episode_bit_rate_blocking_rate'))
-model = DQN.load("/home/zceened/ProjectFiles/DQN/Final/CLS/4000/best_upd.zip")
+model = DQN.load("/content/XRL_MultiBand/DQN_results/NSFNET/CLS/4000/best.zip")
 #model1 = DQN.load("/home/zceened/ProjectFiles/DQN/Final/CL/500/best.zip")
 # Evaluate the agent
 start = time.time()
