@@ -86,7 +86,7 @@ for i, j in zip(load, holding_time):
   training_env = Monitor(training_env, log_dir + '500ktraining', info_keywords=('episode_service_blocking_rate','episode_bit_rate_blocking_rate'))
   # kwargs = {'double_q': True, 'prioritized_replay': True, 'policy_kwargs': dict(dueling=True)} # set of parameters for testing
   policy_kwargs = {'layers': [128] * 4, 'dueling': False}
-  model = DQN(MlpPolicy, training_env, verbose=0, tensorboard_log="XRL_MultiBand/tb/NSFNET_CLSE_4000/DQN-DeepRMSA-v0/", double_q=False, gamma=.95, policy_kwargs=policy_kwargs,
+  model = DQN(MlpPolicy, training_env, verbose=0, tensorboard_log="/content/tb/NSFNET_CLSE_4000/DQN-DeepRMSA-v0/", double_q=False, gamma=.95, policy_kwargs=policy_kwargs,
              learning_rate=10e-5)
   
   env_args['seed'] = env_args['seed'] + 1
