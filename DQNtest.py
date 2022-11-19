@@ -43,7 +43,7 @@ for ht in [50, 100, 200, 400, 600, 800, 1000, 1200]:
     # Logs will be saved in log_dir/monitor.csv
     #testing_env = Monitor(testing_env, log_dir + 'testing_upd', info_keywords=('episode_service_blocking_rate','episode_bit_rate_blocking_rate'))
     #testing_env1 = Monitor(testing_env1, log_dir1 + 'testing_upd', info_keywords=('episode_service_blocking_rate','episode_bit_rate_blocking_rate'))
-    model = DQN.load("/content/XRL_MultiBand/DQN_results/German/CLSE/{}/tmp1/best.zip".format(ht/0.1))
+    model = DQN.load("/content/XRL_MultiBand/DQN_results/German/CLSE/4000/tmp1/best.zip")
     #model1 = DQN.load("/home/zceened/ProjectFiles/DQN/Final/CL/500/best.zip")
     # Evaluate the agent
     start = time.time()
